@@ -73,7 +73,7 @@ if(isset($_POST['submit'])){
       <p>playlist description <span>*</span></p>
       <textarea name="description" class="box" required placeholder="write description" maxlength="1000" cols="30" rows="10"></textarea>
       <p>playlist thumbnail <span>*</span></p>
-      <input type="file" name="image" accept="image/*" required class="box">
+      <input type="file" name="image" accept="image/jpg, image/jpeg, image/png, image/webp" required class="box">
       <input type="submit" value="create playlist" name="submit" class="btn">
    </form>
 

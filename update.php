@@ -58,7 +58,7 @@ if(isset($_POST['submit'])){
          $update_image->execute([$rename, $user_id]);
          move_uploaded_file($image_tmp_name, $image_folder);
          if($prev_image != '' AND $prev_image != $rename){
-            unlink('uploaded_files/'.$prev_image);
+            // unlink('uploaded_files/'.$prev_image);
          }
          $message[] = 'image updated successfully!';
       }

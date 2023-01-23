@@ -26,7 +26,9 @@ if(isset($message)){
          <div id="menu-btn" class="fas fa-bars"></div>
          <div id="search-btn" class="fas fa-search"></div>
          <div id="user-btn" class="fas fa-user"></div>
+         <div id="" class="fa-sharp fa-solid fa-bell" ></div>
          <div id="toggle-btn" class="fas fa-sun"></div>
+         
       </div>
 
       <div class="profile">
@@ -104,6 +106,7 @@ if(isset($message)){
       <a href="post.php"><i class="fas fa-pen"></i><span>Post</span></a>
       <a href="student.php"><i class="fas fa-chalkboard-user"></i><span>Student</span></a>
       <a href="comment.php"><i class="fas fa-comment"></i><span>View Comment</span></a>
+      <a href="leaderboard.php"><i class="fa-sharp fa-solid fa-ranking-star"></i><span>View Ranking</span></a>
       <a href="contact.php"><i class="fas fa-headset"></i><span>Contact</span></a>
    </nav>
 

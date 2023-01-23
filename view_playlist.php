@@ -92,10 +92,14 @@ if(isset($_POST['delete_video'])){
             $count_videos = $conn->prepare("SELECT * FROM `content` WHERE playlist_id = ?");
             $count_videos->execute([$playlist_id]);
             $total_videos = $count_videos->rowCount();
+
+            $count_post = $conn->prepare("SELECT * FROM `post` WHERE playlist_id = ?");
+            $count_post->execute([$playlist_id]);
+            $total_post = $count_post->rowCount();
    ?>
    <div class="row">
       <div class="thumb">
-         <span><?= $total_videos; ?></span>
+      <span><?= $total_videos;  ?> videos <?= $total_post;  ?> posts</span>
          <img src="uploaded_files/<?= $fetch_playlist['thumb']; ?>" alt="">
       </div>
       <div class="details">

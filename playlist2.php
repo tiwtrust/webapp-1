@@ -82,6 +82,10 @@ if(isset($_POST['save_list'])){
             $count_videos->execute([$playlist_id]);
             $total_videos = $count_videos->rowCount();
 
+            $count_post = $conn->prepare("SELECT * FROM `post` WHERE playlist_id = ?");
+            $count_post->execute([$playlist_id]);
+            $total_post = $count_post->rowCount();
+
             $select_tutor = $conn->prepare("SELECT * FROM `users` WHERE id = ? LIMIT 1");
             $select_tutor->execute([$fetch_playlist['user_id']]);
             $fetch_tutor = $select_tutor->fetch(PDO::FETCH_ASSOC);
@@ -107,7 +111,7 @@ if(isset($_POST['save_list'])){
             ?>
          </form>
          <div class="thumb">
-            <span><?= $total_videos; ?> videos</span>
+            <span><?= $total_videos;  ?> videos <?= $total_post;  ?> posts</span>
             <img src="uploaded_files/<?= $fetch_playlist['thumb']; ?>" alt="">
          </div>
       </div>

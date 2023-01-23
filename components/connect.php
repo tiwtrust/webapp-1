@@ -5,7 +5,7 @@
    $user_password = '123456789';
 
    $conn = new PDO($db_name, $user_name, $user_password);
-
+   
    function unique_id() {
       $str = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
       $rand = array();
@@ -16,5 +16,6 @@
       }
       return implode($rand);
    }
-
+   $date = date("Y-m-d");
+    $time = date("H:i:s");
 ?>

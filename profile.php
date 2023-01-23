@@ -21,6 +21,13 @@ $select_bookmark = $conn->prepare("SELECT * FROM `bookmark` WHERE user_id = ?");
 $select_bookmark->execute([$user_id]);
 $total_bookmarked = $select_bookmark->rowCount();
 
+
+$select_port = $conn->prepare("SELECT * FROM `commentss` WHERE user_id = ?");
+$select_port->execute([$user_id]);
+$total_port = $select_port->rowCount();
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -89,7 +96,6 @@ $total_bookmarked = $select_bookmark->rowCount();
             </div>
             <a href="view_comment.php" class="inline-btn">view comments</a>
          </div>
-      </div>
 
    </div>
 

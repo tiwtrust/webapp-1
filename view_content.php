@@ -64,7 +64,7 @@ if(isset($_POST['add_comment'])){
 
       if($select_content->rowCount() > 0){
 
-         $select_comment = $conn->prepare("SELECT * FROM `comments` WHERE content_id = ? AND user_id = ? AND comment = ?");
+         $select_comment = $conn->prepare("SELECT * FROM `comments` WHERE content_id = ? AND user_id = ? AND comment = ? ");
          $select_comment->execute([$content_id, $user_id,  $comment_box]);
 
          if($select_comment->rowCount() > 0){
@@ -90,11 +90,11 @@ if(isset($_POST['delete_comment'])){
    $delete_id = $_POST['comment_id'];
    $delete_id = filter_var($delete_id, FILTER_SANITIZE_STRING);
 
-   $verify_comment = $conn->prepare("SELECT * FROM `comments` WHERE id = ?");
+   $verify_comment = $conn->prepare("SELECT * FROM `comments2` WHERE id = ?");
    $verify_comment->execute([$delete_id]);
 
    if($verify_comment->rowCount() > 0){
-      $delete_comment = $conn->prepare("DELETE FROM `comments` WHERE id = ?");
+      $delete_comment = $conn->prepare("DELETE FROM `comments2` WHERE id = ?");
       $delete_comment->execute([$delete_id]);
       $message[] = 'comment deleted successfully!';
    }else{
@@ -110,13 +110,13 @@ if(isset($_POST['update_now'])){
    $update_box = $_POST['update_box'];
    $update_box = filter_var($update_box, FILTER_SANITIZE_STRING);
 
-   $verify_comment = $conn->prepare("SELECT * FROM `comments` WHERE id = ? AND comment = ?");
+   $verify_comment = $conn->prepare("SELECT * FROM `comments2` WHERE id = ? AND comment = ?");
    $verify_comment->execute([$update_id, $update_box]);
 
    if($verify_comment->rowCount() > 0){
       $message[] = 'comment already added!';
    }else{
-      $update_comment = $conn->prepare("UPDATE `comments` SET comment = ? WHERE id = ?");
+      $update_comment = $conn->prepare("UPDATE `comments2` SET comment = ? WHERE id = ?");
       $update_comment->execute([$update_box, $update_id]);
       $message[] = 'comment edited successfully!';
    }
