@@ -39,31 +39,29 @@ if (isset($_COOKIE['user_id'])) {
         <p>Like Total</p>
       </div>
       <?php
-      $sql_query = "SELECT *, Count(post_id) FROM likes LEFT JOIN post ON likes.post_id = post.id WHERE post_id != 0 GROUP BY post_id ORDER BY Count(post_id) desc limit 10";
-      $result_post_like = $conn->query($sql_query);
+      $sql_query = "SELECT likes.post_id,post.title, Count(post_id) FROM likes LEFT JOIN post ON likes.post_id = post.id WHERE post_id != 0 GROUP BY post_id ORDER BY Count(post_id) desc limit 10";
 
-      if ($result_post_like->rowCount() > 0) {
-        while ($arr_post_like = $result_post_like->fetch(PDO::FETCH_ASSOC)) {
+      if ($result_post_like = $conn->query($sql_query)) {
+
+        if ($result_post_like->fetchColumn() > 0) {
+          foreach ($conn->query($sql_query) as $row) {
 
       ?>
-          <div class="item">
-            <p>
-              <?php
-              if ($arr_post_like['title'] === NULL) {
-                echo 'NULL';
-              } else {
-                echo $arr_post_like['title'];
-              }
-              ?>
-            </p>
-            <p>
-             <?= $arr_post_like['Count(post_id)']; ?>
-            </p>
-          </div>
+            <div class="item">
+              <p>
+                <?php
+                print $row['title'];
+                ?>
+              </p>
+              <p>
+                <?= $row['Count(post_id)']; ?>
+              </p>
+            </div>
       <?php
+          }
+        } else {
+          echo '<p class="empty">Nothing Ranking Post Like!</p>';
         }
-      } else {
-        echo '<p class="empty">Nothing Ranking Post Like!</p>';
       }
       ?>
     </div>
@@ -74,31 +72,32 @@ if (isset($_COOKIE['user_id'])) {
         <p>Like Total</p>
       </div>
       <?php
-      $sql_query = "SELECT *, Count(content_id) FROM likes LEFT JOIN content ON likes.content_id = content.id WHERE content_id != 0 GROUP BY content_id ORDER BY Count(content_id) desc limit 10";
+      $sql_query = "SELECT likes.content_id,content.title, Count(content_id) FROM likes LEFT JOIN content ON likes.content_id = content.id WHERE content_id != 0 GROUP BY content_id ORDER BY Count(content_id) desc limit 10";
       $result_video_like = $conn->query($sql_query);
 
-      if ($result_video_like->rowCount() > 0) {
-        while ($arr_video_like = $result_video_like->fetch(PDO::FETCH_ASSOC)) {
+      if ($result_video_like = $conn->query($sql_query)) {
+
+        if ($result_video_like->fetchColumn() > 0) {
+          foreach ($conn->query($sql_query) as $row) {
 
       ?>
-          <div class="item">
-            <p>
-              <?php
-              if ($arr_video_like['title'] === NULL) {
-                echo 'NULL';
-              } else {
-                echo $arr_video_like['title'];
-              }
-              ?>
-            </p>
-            <p>
-               <?= $arr_video_like['Count(content_id)']; ?>
-            </p>
-          </div>
+            <div class="item">
+              <p>
+                <?php
+
+                print $row['title'];
+
+                ?>
+              </p>
+              <p>
+                <?= $row['Count(content_id)']; ?>
+              </p>
+            </div>
       <?php
+          }
+        } else {
+          echo '<p class="empty">Nothing Ranking Video Like!</p>';
         }
-      } else {
-        echo '<p class="empty">Nothing Ranking Video Like!</p>';
       }
       ?>
     </div>
@@ -112,25 +111,28 @@ if (isset($_COOKIE['user_id'])) {
         <p>Comment Total </p>
       </div>
       <?php
-      $sql_query = "SELECT *, Count(user_id) FROM commentss LEFT JOIN users ON commentss.user_id = users.id GROUP BY user_id ORDER BY Count(user_id) desc limit 10";
+      $sql_query = "SELECT commentss.user_id,users.name, Count(user_id) FROM commentss LEFT JOIN users ON commentss.user_id = users.id GROUP BY user_id ORDER BY Count(user_id) desc limit 10";
       $result_comment_post = $conn->query($sql_query);
 
-      if ($result_comment_post->rowCount() > 0) {
-        while ($arr_comment_post = $result_comment_post->fetch(PDO::FETCH_ASSOC)) {
+      if ($result_comment_post = $conn->query($sql_query)) {
+
+        if ($result_comment_post->rowCount() > 0) {
+          foreach ($conn->query($sql_query) as $row) {
 
       ?>
-          <div class="item">
-            <p>
-              <?= $arr_comment_post['name']; ?>
-            </p>
-            <p>
-              <?= $arr_comment_post['Count(user_id)']; ?>
-            </p>
-          </div>
+            <div class="item">
+              <p>
+                <?= $row['name']; ?>
+              </p>
+              <p>
+                <?= $row['Count(user_id)']; ?>
+              </p>
+            </div>
       <?php
+          }
+        } else {
+          echo '<p class="empty">Nothing Ranking Comment Post!</p>';
         }
-      } else {
-        echo '<p class="empty">Nothing Ranking Comment Post!</p>';
       }
       ?>
     </div>
@@ -141,25 +143,27 @@ if (isset($_COOKIE['user_id'])) {
         <p>Comment Total </p>
       </div>
       <?php
-      $sql_query = "SELECT *, Count(user_id) FROM comments LEFT JOIN users ON comments.user_id = users.id GROUP BY user_id ORDER BY Count(user_id) desc limit 10";
-      $result_comment_post = $conn->query($sql_query);
+      $sql_query = "SELECT comments.user_id,users.name, Count(user_id) FROM comments LEFT JOIN users ON comments.user_id = users.id GROUP BY user_id ORDER BY Count(user_id) desc limit 10";
+      $result_comment_video = $conn->query($sql_query);
 
-      if ($result_comment_post->rowCount() > 0) {
-        while ($arr_comment_post = $result_comment_post->fetch(PDO::FETCH_ASSOC)) {
+      if ($result_comment_video = $conn->query($sql_query)) {
 
+        if ($result_comment_video->rowCount() > 0) {
+          foreach ($conn->query($sql_query) as $row) {
       ?>
-          <div class="item">
-            <p>
-              <?= $arr_comment_post['name']; ?>
-            </p>
-            <p>
-              <?= $arr_comment_post['Count(user_id)']; ?>
-            </p>
-          </div>
+            <div class="item">
+              <p>
+                <?= $row['name']; ?>
+              </p>
+              <p>
+                <?= $row['Count(user_id)']; ?>
+              </p>
+            </div>
       <?php
+          }
+        } else {
+          echo '<p class="empty">Nothing Ranking Comment Video!</p>';
         }
-      } else {
-        echo '<p class="empty">Nothing Ranking Comment Video!</p>';
       }
       ?>
     </div>
