@@ -23,7 +23,7 @@ if (isset($_GET['code'])) {
 
     // checking if user is already exists in database
     $sql = "SELECT * FROM users WHERE email ='{$userinfo['email']}'";
-    $result = mysqli_query($conn, $sql);
+    $result = mysqli_query($connn, $sql);
 
     if (mysqli_num_rows($result) > 0) {
         // user is exists
@@ -32,7 +32,7 @@ if (isset($_GET['code'])) {
     } else {
         // user is not exists
         $sql = "INSERT INTO users (email, first_name, last_name, gender, full_name, picture, verifiedEmail, token) VALUES ('{$userinfo['email']}', '{$userinfo['first_name']}', '{$userinfo['last_name']}', '{$userinfo['gender']}', '{$userinfo['full_name']}', '{$userinfo['picture']}', '{$userinfo['verifiedEmail']}', '{$userinfo['token']}')";
-        $result = mysqli_query($conn, $sql);
+        $result = mysqli_query($connn, $sql);
         if ($result) {
             $token = $userinfo['token'];
         } else {
@@ -43,6 +43,7 @@ if (isset($_GET['code'])) {
 
     // save user data into session
     $_SESSION['user_token'] = $token;
+    $_SESSION['access_token'] = $token;
 } else {
     if (!isset($_SESSION['user_token'])) {
         header("Location: login2.php");
@@ -51,7 +52,7 @@ if (isset($_GET['code'])) {
 
     // checking if user is already exists in database
     $sql = "SELECT * FROM users WHERE token ='{$_SESSION['user_token']}'";
-    $result = mysqli_query($conn, $sql);
+    $result = mysqli_query($connn, $sql);
     if (mysqli_num_rows($result) > 0) {
         // user is exists
         $userinfo = mysqli_fetch_assoc($result);

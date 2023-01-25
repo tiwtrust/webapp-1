@@ -40,5 +40,5 @@ storage/app/public/.DS_Store
 storage/app/public/reports/.DS_Store
 
 public/.DS_Store
-.vendor/
+
 .DS_Store
