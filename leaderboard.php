@@ -33,7 +33,11 @@ if (isset($_COOKIE['user_id'])) {
   <?php include 'components/user_header.php'; ?>
   <section class="card">
     <div class="content">
-      <h1>Ranking Post Like</h1>
+      <h1 class="header">Ranking Post Like</h1>
+      <div class="header-content">
+        <p>Post</p>
+        <p>Like Total</p>
+      </div>
       <?php
       $sql_query = "SELECT *, Count(post_id) FROM likes LEFT JOIN post ON likes.post_id = post.id WHERE post_id != 0 GROUP BY post_id ORDER BY Count(post_id) desc limit 10";
       $result_post_like = $conn->query($sql_query);
@@ -43,7 +47,7 @@ if (isset($_COOKIE['user_id'])) {
 
       ?>
           <div class="item">
-            <p>Post:
+            <p>
               <?php
               if ($arr_post_like['title'] === NULL) {
                 echo 'NULL';
@@ -53,7 +57,7 @@ if (isset($_COOKIE['user_id'])) {
               ?>
             </p>
             <p>
-              Like Total: <?= $arr_post_like['Count(post_id)']; ?>
+             <?= $arr_post_like['Count(post_id)']; ?>
             </p>
           </div>
       <?php
@@ -64,7 +68,11 @@ if (isset($_COOKIE['user_id'])) {
       ?>
     </div>
     <div class="content">
-      <h1>Ranking Video Like</h1>
+      <h1 class="header">Ranking Video Like</h1>
+      <div class="header-content">
+        <p>Video</p>
+        <p>Like Total</p>
+      </div>
       <?php
       $sql_query = "SELECT *, Count(content_id) FROM likes LEFT JOIN content ON likes.content_id = content.id WHERE content_id != 0 GROUP BY content_id ORDER BY Count(content_id) desc limit 10";
       $result_video_like = $conn->query($sql_query);
@@ -74,7 +82,7 @@ if (isset($_COOKIE['user_id'])) {
 
       ?>
           <div class="item">
-            <p>Video:
+            <p>
               <?php
               if ($arr_video_like['title'] === NULL) {
                 echo 'NULL';
@@ -84,7 +92,7 @@ if (isset($_COOKIE['user_id'])) {
               ?>
             </p>
             <p>
-              Like Total: <?= $arr_video_like['Count(content_id)']; ?>
+               <?= $arr_video_like['Count(content_id)']; ?>
             </p>
           </div>
       <?php
@@ -94,12 +102,15 @@ if (isset($_COOKIE['user_id'])) {
       }
       ?>
     </div>
-
   </section>
 
   <section class="card">
     <div class="content">
-      <h1>Ranking Comment Post</h1>
+      <h1 class="header">Ranking Comment Post</h1>
+      <div class="header-content">
+        <p>Name</p>
+        <p>Comment Total </p>
+      </div>
       <?php
       $sql_query = "SELECT *, Count(user_id) FROM commentss LEFT JOIN users ON commentss.user_id = users.id GROUP BY user_id ORDER BY Count(user_id) desc limit 10";
       $result_comment_post = $conn->query($sql_query);
@@ -109,11 +120,11 @@ if (isset($_COOKIE['user_id'])) {
 
       ?>
           <div class="item">
-            <p>Name:
+            <p>
               <?= $arr_comment_post['name']; ?>
             </p>
             <p>
-              Comment Total: <?= $arr_comment_post['Count(user_id)']; ?>
+              <?= $arr_comment_post['Count(user_id)']; ?>
             </p>
           </div>
       <?php
@@ -124,7 +135,11 @@ if (isset($_COOKIE['user_id'])) {
       ?>
     </div>
     <div class="content">
-      <h1>Ranking Comment Video</h1>
+      <h1 class="header">Ranking Comment Video</h1>
+      <div class="header-content">
+        <p>Name</p>
+        <p>Comment Total </p>
+      </div>
       <?php
       $sql_query = "SELECT *, Count(user_id) FROM comments LEFT JOIN users ON comments.user_id = users.id GROUP BY user_id ORDER BY Count(user_id) desc limit 10";
       $result_comment_post = $conn->query($sql_query);
@@ -134,17 +149,17 @@ if (isset($_COOKIE['user_id'])) {
 
       ?>
           <div class="item">
-            <p>Name:
+            <p>
               <?= $arr_comment_post['name']; ?>
             </p>
             <p>
-              Comment Total: <?= $arr_comment_post['Count(user_id)']; ?>
+              <?= $arr_comment_post['Count(user_id)']; ?>
             </p>
           </div>
       <?php
         }
       } else {
-        echo '<p class="empty">Nothing Ranking Comment Post!</p>';
+        echo '<p class="empty">Nothing Ranking Comment Video!</p>';
       }
       ?>
     </div>

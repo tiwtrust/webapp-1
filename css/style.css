@@ -1604,6 +1604,9 @@ section {
   display: flex;
   gap: 2rem;
 }
+.card .header {
+  border-bottom: solid;
+}
 
 .card .content {
   min-height: 25rem;
@@ -1615,6 +1618,18 @@ section {
   filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.1))
     drop-shadow(0 1px 1px rgb(0 0 0 / 0.06));
 }
+
+.card .content .header-content {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+}
+
+.card .content .header-content p {
+  font-size: large;
+  font-weight: bolder;
+}
+
 .card .content h1 {
   font-weight: bolder;
   font-size: x-large;
@@ -1622,6 +1637,7 @@ section {
 
 .card .content p {
   font-size: large;
+  font-weight: 100;
 }
 
 .card .content .item {
