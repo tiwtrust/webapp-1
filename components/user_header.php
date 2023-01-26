@@ -52,7 +52,7 @@ if(isset($message)){
          ?>
          <h3>Please Login or Register</h3>
           <div class="flex-btn">
-            <a href="login.php" class="option-btn">Login</a>
+            <a href="login2.php" class="option-btn">Login</a>
             <a href="register.php" class="option-btn">Register</a>
          </div>
          <?php
@@ -90,7 +90,7 @@ if(isset($message)){
          ?>
          <h3>Please Login or Register</h3>
           <div class="flex-btn" style="padding-top: .5rem;">
-            <a href="login.php" class="option-btn">Login</a>
+            <a href="login2.php" class="option-btn">Login</a>
             <a href="register.php" class="option-btn">Register</a>
          </div>
          <?php

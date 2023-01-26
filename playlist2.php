@@ -43,6 +43,8 @@ if(isset($_POST['save_list'])){
 
 ?>
 
+<?php include 'logic/login_with_gmail.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

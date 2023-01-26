@@ -6,7 +6,6 @@ if(isset($_COOKIE['user_id'])){
    $user_id = $_COOKIE['user_id'];
 }else{
    $user_id = '';
-   header('location:login.php');
 }
 
 if(isset($_GET['get_id'])){
@@ -87,6 +86,8 @@ if(isset($_POST['delete_video'])){
 }
 
 ?>
+
+<?php include 'logic/login_with_gmail.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">

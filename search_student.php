@@ -10,6 +10,8 @@ if(isset($_COOKIE['user_id'])){
 
 ?>
 
+<?php include 'logic/login_with_gmail.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -6,7 +6,6 @@ if(isset($_COOKIE['user_id'])){
    $user_id = $_COOKIE['user_id'];
 }else{
    $user_id = '';
-   header('location:login.php');
 }
 
 $select_likes = $conn->prepare("SELECT * FROM `likes` WHERE user_id = ?");
@@ -26,6 +25,10 @@ $select_port = $conn->prepare("SELECT * FROM `commentss` WHERE user_id = ?");
 $select_port->execute([$user_id]);
 $total_port = $select_port->rowCount();
 
+?>
+
+
+<?php include 'logic/login_with_gmail.php'; 
 
 
 ?>
@@ -58,9 +61,10 @@ $total_port = $select_port->rowCount();
       <div class="user">
          <img src="uploaded_files/<?= $fetch_profile['image']; ?>" alt="">
          <h3><?= $fetch_profile['name']; ?></h3>
-         <p>Student</p>
-         <a href="update.php" class="inline-btn">update profile</a>
-      </div>
+         <p style="margin:10px 0">Student</p>
+         <?php if(!isset($userinfo['token'])){
+               print '<a href="update.php" class="inline-btn" style="margin:10px 0">update profile</a>';
+         } ?>
 
       <div class="box-container">
 

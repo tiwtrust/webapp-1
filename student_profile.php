@@ -44,6 +44,7 @@ if(isset($_POST['tutor_fetch'])){
 
 ?>
 
+<?php include 'logic/login_with_gmail.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">

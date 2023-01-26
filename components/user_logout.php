@@ -4,7 +4,9 @@
    session_start();
 
    setcookie('user_id', '', time() - 1, '/');
+   unset($_SESSION['user_token']);
+   session_destroy();
 
-   header('location:../home.php');
+   header("Location:../home.php");
 
 ?>

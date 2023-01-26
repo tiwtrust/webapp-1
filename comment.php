@@ -46,6 +46,8 @@ if(isset($_POST['delete_post'])){
 
 ?>
 
+<?php include 'logic/login_with_gmail.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

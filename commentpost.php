@@ -49,6 +49,8 @@ if(isset($_POST['update_now'])){
 
 ?>
 
+<?php include 'logic/login_with_gmail.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

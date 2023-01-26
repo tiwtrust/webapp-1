@@ -6,7 +6,6 @@ if(isset($_COOKIE['user_id'])){
    $user_id = $_COOKIE['user_id'];
 }else{
    $user_id = '';
-   header('location:home.php');
 }
 
 
@@ -52,6 +51,8 @@ if(isset($_POST['removepost'])){
 
 
 ?>
+
+<?php include 'logic/login_with_gmail.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
