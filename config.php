@@ -17,6 +17,10 @@ $client->setRedirectUri($redirectUri);
 $client->addScope("email");
 $client->addScope("profile");
 
+// config for send mail
+$mailfrom = "mathawee.li@rmuti.ac.th";
+$mailpass = "iqnndohxbuxqiavi";
+
 // Connect to database
 $hostname = "localhost";
 $username = "root";
