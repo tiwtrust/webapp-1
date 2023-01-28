@@ -1,6 +1,7 @@
 <?php
 
 include 'components/connect.php';
+include 'send_mail/send_mail_noti.php';
 
 if(isset($_COOKIE['user_id'])){
    $user_id = $_COOKIE['user_id'];
@@ -38,8 +39,8 @@ if(isset($_POST['submit'])){
    if($thumb_size > 2000000){
       $message[] = 'image size is too large!';
    }else{
-      $add_playlist = $conn->prepare("INSERT INTO `content`(id, user_id, playlist_id, title, description, video, thumb, status) VALUES(?,?,?,?,?,?,?,?)");
-      $add_playlist->execute([$id, $user_id, $playlist, $title, $description, $rename_video, $rename_thumb, $status]);
+      $add_playlist = $conn->prepare("INSERT INTO `content`( user_id, playlist_id, title, description, video, thumb, status) VALUES(?,?,?,?,?,?,?)");
+      $add_playlist->execute([ $user_id, $playlist, $title, $description, $rename_video, $rename_thumb, $status]);
       move_uploaded_file($thumb_tmp_name, $thumb_folder);
       move_uploaded_file($video_tmp_name, $video_folder);
       $message[] = 'new Content uploaded!';
@@ -49,13 +50,12 @@ if(isset($_POST['submit'])){
       $result = $sql_post_content_for_send_email->fetch( PDO::FETCH_ASSOC );  
       $result_name = $result['name'];
 
-      SendMail('Knowledge Sharing Website Have a New Post', `
-      <h1>Knowledge Sharing Website.</h1>
-      <p>New Post : <?= $title ?>!</p>
-      <img src="<?= $rename_thumb ?>" alt="">
-      <p>Description : <?= $description ?>!</p>
-      <p>New Post By <?= $result_name ?>!</p>
-    `);
+      SendMail('Knowledge Sharing Website Have A New Content!!!', "
+      <h1>Have A New Content Uploaded!</h1>
+      <h2>New Post :  $title</h2>
+      <h3>Description : $description </h3>
+      <h3>New Post By : $result_name </h3>
+    ");
    }
 
    
