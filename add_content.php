@@ -43,6 +43,19 @@ if(isset($_POST['submit'])){
       move_uploaded_file($thumb_tmp_name, $thumb_folder);
       move_uploaded_file($video_tmp_name, $video_folder);
       $message[] = 'new Content uploaded!';
+
+      $sql_post_content_for_send_email = $conn->prepare("SELECT users.id,users.name FROM `users` WHERE id = ?");
+      $sql_post_content_for_send_email->execute([$user_id]);
+      $result = $sql_post_content_for_send_email->fetch( PDO::FETCH_ASSOC );  
+      $result_name = $result['name'];
+
+      SendMail('Knowledge Sharing Website Have a New Post', `
+      <h1>Knowledge Sharing Website.</h1>
+      <p>New Post : <?= $title ?>!</p>
+      <img src="<?= $rename_thumb ?>" alt="">
+      <p>Description : <?= $description ?>!</p>
+      <p>New Post By <?= $result_name ?>!</p>
+    `);
    }
 
    
