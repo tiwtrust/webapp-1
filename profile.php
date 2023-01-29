@@ -2,9 +2,9 @@
 
 include 'components/connect.php';
 
-if(isset($_COOKIE['user_id'])){
+if (isset($_COOKIE['user_id'])) {
    $user_id = $_COOKIE['user_id'];
-}else{
+} else {
    $user_id = '';
 }
 
@@ -28,13 +28,11 @@ $total_port = $select_port->rowCount();
 ?>
 
 
-<?php include 'logic/login_with_gmail.php'; 
-
-
-?>
+<?php include 'logic/login_with_gmail.php';?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -48,64 +46,64 @@ $total_port = $select_port->rowCount();
    <link rel="stylesheet" href="css/style.css">
 
 </head>
+
 <body>
 
-<?php include 'components/user_header.php'; ?>
+   <?php include 'components/user_header.php'; ?>
 
-<section class="profile">
+   <section class="profile">
 
-   <h1 class="heading">profile details</h1>
+      <h1 class="heading">profile details</h1>
 
-   <div class="details">
+      <div class="details">
 
-      <div class="user">
-         <img src="uploaded_files/<?= $fetch_profile['image']; ?>" alt="">
-         <h3><?= $fetch_profile['name']; ?></h3>
-         <p style="margin:10px 0">Student</p>
-         <?php if(!isset($userinfo['token'])){
-               print '<a href="update.php" class="inline-btn" style="margin:10px 0">update profile</a>';
-         } ?>
+         <div class="user">
+            <img src="uploaded_files/<?= $fetch_profile['image']; ?>" alt="">
+            <h3><?= $fetch_profile['name']; ?></h3>
+            <p style="margin:10px 0">Student</p>
 
-      <div class="box-container">
+            <a href="update.php" class="inline-btn" style="margin:10px 0">update profile</a>
 
-         <div class="box">
-            <div class="flex">
-               <i class="fas fa-bookmark"></i>
-               <div>
-                  <h3><?= $total_bookmarked; ?></h3>
-                  <span>saved playlists</span>
+            <div class="box-container">
+
+               <div class="box">
+                  <div class="flex">
+                     <i class="fas fa-bookmark"></i>
+                     <div>
+                        <h3><?= $total_bookmarked; ?></h3>
+                        <span>saved playlists</span>
+                     </div>
+                  </div>
+                  <a href="bookmark.php" class="inline-btn">view playlists</a>
                </div>
-            </div>
-            <a href="bookmark.php" class="inline-btn">view playlists</a>
-         </div>
 
-         <div class="box">
-            <div class="flex">
-               <i class="fas fa-heart"></i>
-               <div>
-                  <h3><?= $total_likes; ?></h3>
-                  <span>liked video & post</span>
+               <div class="box">
+                  <div class="flex">
+                     <i class="fas fa-heart"></i>
+                     <div>
+                        <h3><?= $total_likes; ?></h3>
+                        <span>liked video & post</span>
+                     </div>
+                  </div>
+                  <a href="like.php" class="inline-btn">view liked</a>
                </div>
-            </div>
-            <a href="like.php" class="inline-btn">view liked</a>
-         </div>
 
-         <div class="box">
-            <div class="flex">
-               <i class="fas fa-comment"></i>
-               <div>
-                  <h3><?= $total_comments; ?></h3>
-                  <span>video comments</span>
+               <div class="box">
+                  <div class="flex">
+                     <i class="fas fa-comment"></i>
+                     <div>
+                        <h3><?= $total_comments; ?></h3>
+                        <span>video comments</span>
+                     </div>
+                  </div>
+                  <a href="view_comment.php" class="inline-btn">view comments</a>
                </div>
+
             </div>
-            <a href="view_comment.php" class="inline-btn">view comments</a>
-         </div>
 
-   </div>
+   </section>
 
-</section>
-
-<!-- profile section ends -->
+   <!-- profile section ends -->
 
 
 
@@ -118,18 +116,19 @@ $total_port = $select_port->rowCount();
 
 
 
-<!-- footer section starts  -->
+   <!-- footer section starts  -->
 
-<footer class="footer">
+   <footer class="footer">
 
-&copy; copyright @ <?= date('Y'); ?> by <span>Mathawee Linjee</span> | all rights reserved!
+      &copy; copyright @ <?= date('Y'); ?> by <span>Mathawee Linjee</span> | all rights reserved!
 
-</footer>
+   </footer>
 
-<!-- footer section ends -->
+   <!-- footer section ends -->
 
-<!-- custom js file link  -->
-<script src="js/script.js"></script>
-   
+   <!-- custom js file link  -->
+   <script src="js/script.js"></script>
+
 </body>
+
 </html>

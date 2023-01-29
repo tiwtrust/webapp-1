@@ -1,5 +1,6 @@
 <?php
 
+require_once 'config.php';
 include 'components/connect.php';
 
 if(isset($_COOKIE['user_id'])){
@@ -32,10 +33,24 @@ if(isset($_POST['submit'])){
    if($thumb_size > 2000000){
       $message[] = 'image size is too large!';
    }else{
-      $add_playlist = $conn->prepare("INSERT INTO `post`(id, user_id, playlist_id, title, description, thumb, status) VALUES(?,?,?,?,?,?,?)");
-      $add_playlist->execute([$id, $user_id, $playlist, $title, $description, $rename_thumb, $status]);
+      $add_playlist = $conn->prepare("INSERT INTO `post`( user_id, playlist_id, title, description, thumb, status) VALUES(?,?,?,?,?,?)");
+      $add_playlist->execute([ $user_id, $playlist, $title, $description, $rename_thumb, $status]);
       move_uploaded_file($thumb_tmp_name, $thumb_folder);
       $message[] = 'new post uploaded!';
+
+      $sql_post_for_send_email = $conn->prepare("SELECT users.id,users.name FROM `users` WHERE id = ?");
+      $sql_post_for_send_email->execute([$user_id]);
+      $result = $sql_post_for_send_email->fetch( PDO::FETCH_ASSOC );  
+      $result_name = $result['name'];
+
+      SendMail('Knowledge Sharing Website Have a New Post', `
+      <h1>Knowledge Sharing Website.</h1>
+      <p>New Post : <?= $title ?>!</p>
+      <img src="<?= $rename_thumb ?>" alt="">
+      <p>Description : <?= $description ?>!</p>
+      <p>New Post By <?= $result_name ?>!</p>
+    `);
+
    }
 
    
