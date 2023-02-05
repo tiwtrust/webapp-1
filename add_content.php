@@ -50,7 +50,7 @@ if(isset($_POST['submit'])){
       $result = $sql_post_content_for_send_email->fetch( PDO::FETCH_ASSOC );  
       $result_name = $result['name'];
 
-      SendMail('Knowledge Sharing Website Have A New Content!!!', "
+      sendMail('Knowledge Sharing Website Have A New Content!!!', "
       <h1>Have A New Content Uploaded!</h1>
       <h2>New Post :  $title</h2>
       <h3>Description : $description </h3>
