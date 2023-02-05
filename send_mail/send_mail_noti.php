@@ -14,10 +14,10 @@ $mail_all = mysqli_query($connn, $sql);
 
 function sendMail($subjectMails, $messageMails)
 {   
-   print_r($GLOBALS['result']);
-   if ($GLOBALS['result']->num_rows > 0) {
+   print_r($GLOBALS['mail_all']);
+   if ($GLOBALS['mail_all']->num_rows > 0) {
       $pool = Pool::create();
-      while ($row = $GLOBALS['result']->fetch_assoc()) {
+      while ($row = $GLOBALS['mail_all']->fetch_assoc()) {
          $pool[] = async(function () use ($row, $subjectMails, $messageMails) {
             // print_r("email: " . $row["email"] . "<br>");
             $mailfrom = $GLOBALS['mailfrom'];

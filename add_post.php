@@ -14,16 +14,16 @@ if(isset($_POST['submit'])){
 
    $id = unique_id();
    $status = $_POST['status'];
-   $status = filter_var($status, FILTER_SANITIZE_STRING);
+   $status = filter_var($status);
    $title = $_POST['title'];
-   $title = filter_var($title, FILTER_SANITIZE_STRING);
+   $title = filter_var($title);
    $description = $_POST['description'];
-   $description = filter_var($description, FILTER_SANITIZE_STRING);
+   $description = filter_var($description);
    $playlist = $_POST['playlist'];
-   $playlist = filter_var($playlist, FILTER_SANITIZE_STRING);
+   $playlist = filter_var($playlist);
 
    $thumb = $_FILES['thumb']['name'];
-   $thumb = filter_var($thumb, FILTER_SANITIZE_STRING);
+   $thumb = filter_var($thumb);
    $thumb_ext = pathinfo($thumb, PATHINFO_EXTENSION);
    $rename_thumb = unique_id().'.'.$thumb_ext;
    $thumb_size = $_FILES['thumb']['size'];
