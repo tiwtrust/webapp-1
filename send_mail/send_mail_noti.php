@@ -6,8 +6,6 @@ use PHPMailer\PHPMailer\Exception;
 
 use Spatie\Async\Pool;
 
-$poolSendMail = Pool::create();
-
 require_once 'config.php';
 $sql = "SELECT distinct email FROM users limit 499";
 $mail_all = mysqli_query($connn, $sql);
