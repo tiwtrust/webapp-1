@@ -30,7 +30,7 @@ if(isset($_POST['submit'])){
  }
 
 if (isset($_SESSION['user_token'])) {
-    header("Location:welcome.php");
+    header("Location:home.php");
 } else {
 
 ?>
