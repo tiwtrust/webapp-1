@@ -1,5 +1,6 @@
 <?php
 
+require_once 'config.php';
 include 'components/connect.php';
 
 if(isset($_COOKIE['user_id'])){
@@ -7,26 +8,27 @@ if(isset($_COOKIE['user_id'])){
 }else{
    $user_id = '';
 }
+include 'logic/login_with_gmail.php';
 
 if(isset($_POST['submit'])){
 
    $id = unique_id();
    $title = $_POST['title'];
-   $title = filter_var($title, FILTER_SANITIZE_STRING);
+   $title = filter_var($title);
    $description = $_POST['description'];
-   $description = filter_var($description, FILTER_SANITIZE_STRING);
+   $description = filter_var($description);
    $status = $_POST['status'];
-   $status = filter_var($status, FILTER_SANITIZE_STRING);
+   $status = filter_var($status);
 
    $image = $_FILES['image']['name'];
-   $image = filter_var($image, FILTER_SANITIZE_STRING);
+   $image = filter_var($image);
    $ext = pathinfo($image, PATHINFO_EXTENSION);
    $rename = unique_id().'.'.$ext;
    $image_size = $_FILES['image']['size'];
    $image_tmp_name = $_FILES['image']['tmp_name'];
    $image_folder = 'uploaded_files/'.$rename;
-
-   $add_playlist = $conn->prepare("INSERT INTO `playlist`( user_id, title, description, thumb, status) VALUES(?,?,?,?,?)");
+   
+   $add_playlist = $conn->prepare("INSERT INTO `playlist`(user_id, title, description, thumb, status) VALUES(?,?,?,?,?)");
    $add_playlist->execute([ $user_id, $title, $description, $rename, $status]);
 
    move_uploaded_file($image_tmp_name, $image_folder);
@@ -36,8 +38,6 @@ if(isset($_POST['submit'])){
 }
 
 ?>
-
-<?php include 'logic/login_with_gmail.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
