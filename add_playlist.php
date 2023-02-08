@@ -8,6 +8,7 @@ if(isset($_COOKIE['user_id'])){
 }else{
    $user_id = '';
 }
+
 include 'logic/login_with_gmail.php';
 
 if(isset($_POST['submit'])){

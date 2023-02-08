@@ -15,12 +15,14 @@ if(isset($_GET['get_id'])){
    header('location:home.php');
 }
 
+include 'logic/login_with_gmail.php';
+
 if(isset($_POST['like_content'])){
 
    if($user_id != ''){
 
       $content_id = $_POST['content_id'];
-      $content_id = filter_var($content_id, FILTER_SANITIZE_STRING);
+      $content_id = filter_var($content_id);
 
       $select_content = $conn->prepare("SELECT * FROM `content` WHERE id = ? LIMIT 1");
       $select_content->execute([$content_id]);
@@ -36,7 +38,7 @@ if(isset($_POST['like_content'])){
          $remove_likes->execute([$user_id, $content_id]);
          $message[] = 'removed from likes!';
       }else{
-         $insert_likes = $conn->prepare("INSERT INTO `likes`(user_id, content_id) VALUES(?,?)");
+         $insert_likes = $conn->prepare("INSERT INTO `likes`(user_id, content_id,post_id) VALUES(?,?,0)");
          $insert_likes->execute([$user_id, $content_id]);
          $message[] = 'added to likes!';
       }
@@ -124,8 +126,6 @@ if(isset($_POST['update_now'])){
 }
 
 ?>
-
-<?php include 'logic/login_with_gmail.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
